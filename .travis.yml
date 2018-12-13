@@ -67,7 +67,6 @@ jobs:
     - stage: "Migrate DB"
       env:
         - DB_MIGRATION_BUILD="TRUE"
-        - PYTHON_VERSION="2"
         - PYTHON_VERSION="3"
       os:
         - linux

@@ -2,7 +2,7 @@
 Tethys Portal
 *************
 
-**Last Updated:** December 14, 2015
+**Last Updated:** December 2018
 
 Tethys Portal is the Django web site provided by Tethys Platform that acts as the runtime environment for apps. It leverages the capabilities of Django to provide the core website functionality that is often taken for granted in modern web applications. A description of the primary capabilities of Tethys Portal is provided in this section.
 
@@ -14,6 +14,7 @@ Tethys Portal is the Django web site provided by Tethys Platform that acts as th
    tethys_portal/social_auth
    tethys_portal/developer_tools
    tethys_portal/feedback
+   tethys_portal/platform_settings
 
 
 
