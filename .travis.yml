@@ -1,20 +1,12 @@
 #
 language: c
 
-env:
-  - PYTHON_VERSION="2"
-  - PYTHON_VERSION="3"
-
 # Setting sudo to false opts in to Travis-CI container-based builds.
 sudo: false
 
 # Turn off email notifications
 notifications:
   email: false
-
-os:
-  - linux
-  - osx
 
 stages:
   - test
@@ -23,6 +15,12 @@ stages:
 jobs:
   include:
     - stage: test
+      env:
+        - PYTHON_VERSION="2"
+        - PYTHON_VERSION="3"
+      os:
+        - linux
+        - osx
       install:
         - cd ..
         - mv tethys src
@@ -63,6 +61,10 @@ jobs:
         - ls -al
         - coveralls
     - stage: "Migrate Database"
+      env:
+        - PYTHON_VERSION="3"
+      os:
+        - linux
       install:
         - skip
       script:
