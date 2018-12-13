@@ -21,6 +21,10 @@ stages:
   - "Migrate Database"
 
 install:
+  # If this is a database migration test get the latest on the release branch
+  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then git fetch --all && git reset --hard origin/release; fi
+
+  # Run install script
   - cd ..
   - mv tethys src
   - bash ./src/scripts/install_tethys.sh -h
@@ -63,12 +67,9 @@ jobs:
         - ls -al
         - coveralls
 
-    - stage: "Migrate Database"
+    - stage: "Migrate DB"
       env:
-        - PYTHON_VERSION="3"
+        - DB_MIGRATION_BUILD="TRUE"
       os:
         - linux
-      install:
-        - skip
-      script:
-        - true
+      script: true
