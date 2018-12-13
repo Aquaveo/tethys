@@ -55,18 +55,15 @@ install:
   - python setup.py develop
   - popd
 
+script:
+  - tethys test -c -u
+
+after_success:
+  - ls -al
+  - coveralls
+
 jobs:
   include:
-    - stage: test
-      # command to run tests
-      script:
-        - tethys test -c -u
-
-      # generate test coverage information
-      after_success:
-        - ls -al
-        - coveralls
-
     - stage: "Migrate DB"
       env:
         - DB_MIGRATION_BUILD="TRUE"
