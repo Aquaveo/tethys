@@ -24,7 +24,7 @@ stages:
 install:
   # If this is a database migration test get the latest on the release branch
   - if [ ! -z "$DB_MIGRATION_BUILD" ]; then git fetch --unshallow; git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"; git fetch --all; git branch -r; git reset --hard origin/release; fi
-  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then cd scripts; rm tethys_install.sh; wget https://raw.githubusercontent.com/tethysplatform/tethys/master/scripts/install_tethys.sh; chmod +x install_tethys.sh; cd ../; fi
+  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then cd scripts; rm install_tethys.sh; wget https://raw.githubusercontent.com/tethysplatform/tethys/master/scripts/install_tethys.sh; chmod +x install_tethys.sh; cd ../; fi
   # Run install script
   - cd ..
   - mv tethys src
