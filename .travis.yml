@@ -17,12 +17,12 @@ os:
   - osx
 
 stages:
-  - test
   - "Migrate Database"
+  - test
 
 install:
   # If this is a database migration test get the latest on the release branch
-  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then git fetch --all && git reset --hard origin/release; fi
+  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then git fetch --all; git branch -r; git reset --hard release; fi
 
   # Run install script
   - cd ..
