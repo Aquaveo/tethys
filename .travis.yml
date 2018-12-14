@@ -18,11 +18,12 @@ os:
 
 stages:
   - "Migrate Database"
-  - test
+  - name: test
+    if: branch = master
 
 install:
   # If this is a database migration test get the latest on the release branch
-  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then git fetch --unshallow; git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"; git fetch --all; git branch -r; git reset --hard release; fi
+  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then git fetch --unshallow; git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"; git fetch --all; git branch -r; git reset --hard origin/release; fi
 
   # Run install script
   - cd ..
