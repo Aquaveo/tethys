@@ -23,13 +23,13 @@ stages:
 
 install:
   # If this is a database migration test get the latest on the release branch
-  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then echo "PRE-CHECKOUT RELEASE MIGRATIONS"; ls ./src/*/migrations  fi
+  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then echo "PRE-CHECKOUT RELEASE MIGRATIONS"; ls ./src/*/migrations; fi
   - if [ ! -z "$DB_MIGRATION_BUILD" ]; then git fetch --unshallow; git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"; git fetch --all; git branch -r; git reset --hard origin/release; fi
   - if [ ! -z "$DB_MIGRATION_BUILD" ]; then cd scripts; rm install_tethys.sh; wget https://raw.githubusercontent.com/tethysplatform/tethys/master/scripts/install_tethys.sh; chmod +x install_tethys.sh; cd ../; fi
   # Run install script
   - cd ..
   - mv tethys src
-  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then echo "PRE-INSTALL MIGRATIONS"; ls ./src/*/migrations  fi
+  - if [ ! -z "$DB_MIGRATION_BUILD" ]; then echo "PRE-INSTALL MIGRATIONS"; ls ./src/*/migrations; fi
   - bash ./src/scripts/install_tethys.sh -h
   - bash ./src/scripts/install_tethys.sh --partial-tethys-install mesdiat -t $PWD --python-version $PYTHON_VERSION
 
